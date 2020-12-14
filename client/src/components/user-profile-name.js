@@ -5,13 +5,18 @@ export default function UserProfileName(props) {
   const regularIcons = ['🛴', '🚜'];
   const vipIcons = ['🚀', '🛸'];
   const index = counter % 2;
-  const icon = props.user.isVip ? vipIcons[index] : regularIcons[index];
-  return (
-    <span>
-      <span data-testid="profile-icon" onClick={() => setCounter(i => i + 1)}>
-        {icon}
+  const icon = props &&  props.user && props.user.isVip ? vipIcons[index] : regularIcons[index];
+  
+  if (props) {
+    return (
+      <span>
+        <span data-testid="profile-icon" onClick={() => setCounter(i => i + 1)}>
+          {icon}
+        </span>
+      {props.user.name && <span> {props.user.name} </span> }
       </span>
-      {props.user.name}
-    </span>
-  );
+    );
+  }
+  return null;
+
 }

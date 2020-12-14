@@ -16,7 +16,6 @@ export default function CarsTable() {
         setIsLoading(false);
       } catch (error) {
         setIsLoading(false);
-        console.error(error);
       }
     }
 
@@ -25,9 +24,10 @@ export default function CarsTable() {
 
   async function onRental(id) {
     await rentCar(id);
-
-    setRentStatus(true);
+  
+    setRentStatus(true); 
   }
+
   if (isRentSuccess) {
     return <Redirect to="/rentals" />;
   }
@@ -48,7 +48,10 @@ export default function CarsTable() {
             <td colSpan="5">Trwa ładowanie ...</td>
           </tr>
         )}
-        {data.map(car => {
+        {!data && <tr>
+            <td colSpan="5"> Zaden samochód nie jest dostępny. </td>
+          </tr>} 
+        {!isRentSuccess && data && data.map(car => {
           return (
             <tr data-testid={`car-${car.car_id}`} key={car.car_id}>
               <td>{car.car_id}</td>
@@ -56,11 +59,13 @@ export default function CarsTable() {
               <td>{car.model}</td>
               <td>{car.price}</td>
               <td>
-                <button onClick={() => onRental(car.car_id)}>wynajmij</button>
+                <button data-testid={`car-rent-${car.car_id}`}
+                        onClick={() => onRental(car.car_id)}>wynajmij</button>
               </td>
             </tr>
           );
         })}
+        {isRentSuccess && <tr> Wynajęto! </tr> }
       </tbody>
     </table>
   );

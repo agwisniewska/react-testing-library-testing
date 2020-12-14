@@ -7,8 +7,13 @@ export default function Logout() {
   const [isLogoutSuccess, setLogoutStatus] = React.useState(false);
   React.useEffect(() => {
     async function onLogout() {
-      await logout();
-      setLogoutStatus(true);
+      try {
+        await logout();
+        setLogoutStatus(true);
+      } catch(err) {
+        console.log(err);
+      }
+     
     }
 
     onLogout();

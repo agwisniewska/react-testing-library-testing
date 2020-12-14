@@ -3,6 +3,7 @@ import { Switch, Route } from 'react-router-dom';
 import { Redirect } from 'react-router-dom';
 
 import { useAuth } from './auth';
+import { ProtectedRoutes } from "./protected-routes"
 import LoginForm from './login-form';
 import CarsTable from './cars-table';
 import NavBar from './nav-bar';
@@ -35,14 +36,6 @@ function App() {
       </Switch>
     </div>
   );
-}
-
-function ProtectedRoutes({ children }) {
-  const { isAuthenticated } = useAuth();
-  if (!isAuthenticated) {
-    return <Redirect to="/" />;
-  }
-  return children;
 }
 
 export default App;

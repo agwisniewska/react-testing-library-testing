@@ -28,32 +28,36 @@ export default function RentalsTable() {
           return (
             <tr key={rental.rental_id}>
               <td>{rental.rental_id}</td>
-              <td>
+              <td role="car_actions">
                 {rental.car_id}{' '}
                 <button
+       
                   onClick={() => api.takeCar(rental.rental_id).then(fetch)}
                 >
-                  odbierz
+                  wypozycz samochód
                 </button>
                 <button
+             
                   onClick={() => api.returnCar(rental.rental_id).then(fetch)}
                 >
-                  zwróć
+                  zwroc samochód
                 </button>
               </td>
-              <td>
+              <td role="deposit_actions">
                 {rental.deposit}{' '}
                 <button
+
                   onClick={() => api.payDeposit(rental.rental_id).then(fetch)}
                 >
-                  opłać
+                  oplac samochód
                 </button>
                 <button
+                
                   onClick={() =>
                     api.returnDeposit(rental.rental_id).then(fetch)
                   }
                 >
-                  odbierz
+                  odbierz samochód
                 </button>
               </td>
               <td>{rental.state}</td>

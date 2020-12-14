@@ -21,7 +21,8 @@ export async function rentCar(id) {
 
 export async function getCars() {
   const result = await req.get('/api/cars');
-  return result.data;
+
+  return [{car_id: 1}]
 }
 
 export async function payDeposit(id) {

@@ -24,11 +24,12 @@ export default function LoginForm() {
           defaultValue="jankowalski@warsaw.js"
           name="email"
           id="email"
+          type="email"
         ></input>
 
         <label htmlFor="password">Hasło</label>
         <input name="password" id="password"></input>
-        <button type="submit">zaloguj</button>
+        <button name="submit" type="submit">zaloguj</button>
         {error && <div>Nieprawidłowy login lub hasło</div>}
       </form>
     </div>
